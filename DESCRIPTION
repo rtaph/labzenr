@@ -1,0 +1,26 @@
+Package: labzenr
+Title: A package to help UBC MDS students manage their labs
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Kamal"",
+           family = "Moravej",
+           role = c("aut", "cre"),
+           email = "sk.moravej@gmail.com"),
+      person(given = "Rafael",
+           family = "Pilliard-Hellwig",
+           email = "rtaph@student.ubc.ca",
+           role = c("aut")),
+      person(given = "Sukhdeep",
+             family = "Kaur",
+             email = "Sukhdeep_2929@yahoo.com",
+             role = c("aut")))
+Description: labzenr is a Python package that adds 
+    more zen to your student experience of working on MDS labs. 
+    It lets you manage common tasks such as counting total marks 
+    in an assigment, and performs common checks for mechanics in 
+    your iPython notebooks and R markdown assignments.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
