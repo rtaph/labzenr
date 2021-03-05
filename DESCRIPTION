@@ -2,7 +2,7 @@ Package: labzenr
 Title: A package to help UBC MDS students manage their labs
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "Kamal"",
+    c(person(given = "Kamal",
            family = "Moravej",
            role = c("aut", "cre"),
            email = "sk.moravej@gmail.com"),
