@@ -4,7 +4,7 @@
 #'   files (either.ipynb or .Rmd). If left blank, the function will recursively
 #'   search for all labs in the working directory based on the file extension.
 #'
-#' @return A character vector where each element is a markdown cell.
+#' @return A character vector where each element is the content of one markdown cell.
 #'
 #'
 #' @examples
@@ -13,4 +13,3 @@
 #' }
 parse_lab <- function(notebook = NULL) {
 }
-
