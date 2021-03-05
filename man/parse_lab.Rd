@@ -12,7 +12,7 @@ files (either.ipynb or .Rmd). If left blank, the function will recursively
 search for all labs in the working directory based on the file extension.}
 }
 \value{
-A character vector where each element is a markdown cell.
+A character vector where each element is the content of one markdown cell.
 }
 \description{
 Parse MDS lab files to return the markdown content

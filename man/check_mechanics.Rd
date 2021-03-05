@@ -23,7 +23,7 @@ Github repo link, that you have pushed your latest commit, and that you have
 at least three commit messages authored by you in your history.
 }
 \examples{
-
+\dontrun{
 check_mechanics()
-
+}
 }
