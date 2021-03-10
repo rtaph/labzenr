@@ -16,6 +16,8 @@ candidate files are found, the user will be prompted to select which file
 they wish.
 }
 \examples{
+\dontrun{
 # Navigate to a UBC lab repo and type
 find_assignment()
+}
 }

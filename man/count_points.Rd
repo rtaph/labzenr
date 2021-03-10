@@ -21,7 +21,11 @@ A dataframe indicating total optional and required number of points.
 Tally Available Points in Lab
 }
 \examples{
-\dontrun{
-count_points()
-}
+# R markdown
+notebook <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
+count_points(notebook)
+
+# Python notebook
+notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+count_points(notebook)
 }
