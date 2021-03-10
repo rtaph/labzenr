@@ -10,9 +10,13 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' count_points()
-#' }
+#' # R markdown
+#' notebook <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
+#' count_points(notebook)
+#'
+#' # Python notebook
+#' notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+#' count_points(notebook)
 count_points <- function(notebook, margins = TRUE) {
 
 }

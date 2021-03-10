@@ -12,7 +12,8 @@ files (either.ipynb or .Rmd). If left blank, the function will recursively
 search for all labs in the working directory based on the file extension.}
 }
 \value{
-A logical which indicates whether the last pushed version is latest or not
+A logical which indicates whether the last pushed version is latest
+or not
 }
 \description{
 Check whether the user has pushed the latest version in his/her repository

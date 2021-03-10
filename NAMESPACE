@@ -3,3 +3,4 @@
 export(check_mechanics)
 export(count_points)
 export(find_assignment)
+export(parse_lab)

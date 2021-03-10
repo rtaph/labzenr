@@ -1,5 +1,6 @@
 
-#' Check whether the user has included the github repo link in his/her repository
+#' Check whether the user has included the github repo link in his/her
+#' repository
 #'
 #' @inheritParams parse_lab
 #' @return A logical which indicates whether the repo link exists or not
@@ -7,7 +8,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' check_repo_link()
+#' # Python notebook example should work as it DOES not have a link
+#' notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+#' check_repo_link(notebook)
+#'
+#' # R markdown example should fail as it does NOT have a link
+#' notebook <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
+#' check_repo_link(notebook)
 #' }
 check_repo_link <- function(notebook) {
 
@@ -16,7 +23,8 @@ check_repo_link <- function(notebook) {
 #' Check whether the user has pushed the latest version in his/her repository
 #'
 #' @inheritParams parse_lab
-#' @return A logical which indicates whether the last pushed version is latest or not
+#' @return A logical which indicates whether the last pushed version is latest
+#'   or not
 #'
 #'
 #' @examples

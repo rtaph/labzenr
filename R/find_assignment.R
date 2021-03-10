@@ -10,22 +10,24 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Navigate to a UBC lab repo and type
 #' find_assignment()
+#' }
 find_assignment <- function() {
 
   # list all candidate files
   files <- fs::dir_ls(regexp = ".*\\.(Rmd|ipynb)$", recurse = TRUE)
 
   if (length(files) == 1) {
-    ui_done("Found {ui_field(files)}")
+    usethis::ui_done("Found {ui_field(files)}")
     return(files)
   } else if (length(files) > 1) {
     prompt <- "Multiple potential assignments found. Please select:"
     choice <- utils::menu(files, title = prompt)
     return(files[choice])
   } else {
-    ui_stop("Could not find an assignment file. Are you sure you are in the \\
-            right directory?")
+    usethis::ui_stop("Could not find an assignment file. Are you \\
+                     in the right directory?")
   }
 }
