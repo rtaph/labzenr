@@ -1,3 +1,5 @@
+# Units tests for count_points()
+
 library(checkmate)
 
 rmd <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
