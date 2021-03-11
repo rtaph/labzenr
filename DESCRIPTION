@@ -32,4 +32,6 @@ Config/testthat/edition: 3
 Imports: 
     fs,
     stringi,
-    usethis
+    usethis,
+    gert,
+    credentials

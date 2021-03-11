@@ -20,4 +20,3 @@
 count_points <- function(notebook, margins = TRUE) {
 
 }
-
