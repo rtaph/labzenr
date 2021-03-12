@@ -1,0 +1,42 @@
+---
+title: DSCI 999 Lab 2 - Another Lab
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+This lab is missing a number in the rubric tag and has no optional.
+
+## General Instructions
+
+rubric={mechanics}
+
+> The Github repo for this lab can be found at [MDS-2021-22/DSCI_999_lab2_johnsmith](https://github.ubc.ca/MDS-2020-21/DSCI_999_lab2_johnsmith).
+
+-   All files necessary to run your work must be pushed to your **GitHub.ubc.ca** repository for this lab.
+-   You need to have a minimum of 3 commit messages associated with your **GitHub.ubc.ca** repository for this lab.
+-   You must also submit a `.html` version of this homework to Canvas.
+-   Follow the [MDS general lab instructions](https://ubc-mds.github.io/resources_pages/general_lab_instructions/).
+-   This assignment is to be completed in `R`.
+-   Make it easy for others to read and run your code. Use the *pipe* operator `%>%` whenever appropriate to help with code readability.
+-   For coding questions, ensure you display the output of the code object asked for in the questions.
+
+## Exercise 1: True or False?
+<hr>
+rubric={reasoning:5}
+
+
+> Your answer goes here.
+
+
+# Submission
+
+Congratulations! You are done the lab! Pat yourself on the back, render your notebook to `html` by clicking the knit button inside RStudio and submit your worksheet to both Canvas and GitHub!
+
+To programmatically submit the assignment to Canvas, open [submit.ipynb](submit.ipynb) and use the instructions there.

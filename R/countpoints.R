@@ -40,11 +40,21 @@ extract_points <- function(notebook, margins = TRUE) {
   one_pt_worth <- 0.95 / sum(dat$total[!dat$optional])
   dat$prop <- dat$total * one_pt_worth
 
+  # defensive check
+  if (!all(dat$below_header)) {
+    rlang::abort("All rubrics should be below a markdown header. Aborting.")
+  }
+  if (any(is.na(dat$pts))) {
+    rlang::abort("No rubric should be missing points. Aborting.")
+  }
+
   # tidy up columns
   dat$header <- gsub("^#{1,6}\\s+", "", dat$header)
   dat$rubric <- gsub("^rubric\\=", "", dat$text, ignore.case = TRUE)
-  dat <- dat[, c("line", "rubric", "header", "optional", "pts",
-                 "total", "prop")]
+  dat <- dat[, c(
+    "line", "rubric", "header", "optional", "pts",
+    "total", "prop"
+  )]
   dat
 }
 
