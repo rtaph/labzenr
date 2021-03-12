@@ -5,7 +5,7 @@
 \title{Check whether the user has included the github repo link in his/her
 repository}
 \usage{
-check_repo_link(notebook)
+check_repo_link(notebook = NULL)
 }
 \arguments{
 \item{notebook}{A character indicating the path or list of paths to MDS lab

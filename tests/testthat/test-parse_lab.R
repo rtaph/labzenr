@@ -3,7 +3,6 @@ test_that("Dummy test files must be readable", {
   py_file <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
   r_file <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
 
-
   # check they are accessible
   expect(fs::file_exists(py_file),
     failure_message = "dummylab.ipynb not found"
@@ -13,7 +12,6 @@ test_that("Dummy test files must be readable", {
   )
 })
 
-# check the file path is character
 test_that("The file path should be string", {
   expect_error(parse_lab(2))
 })

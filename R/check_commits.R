@@ -1,5 +1,6 @@
 #' Check whether the user has at least three commits
-#' @inheritParams parse_lab
+#'
+#' @param ... Arguments passed to `gert`, such as the `repo` name or `ref`.
 #' @return A logical which indicates whether the repo has 3 commits or not
 #' @import gert
 #' @export
