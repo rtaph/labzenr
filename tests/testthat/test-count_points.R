@@ -2,18 +2,24 @@
 
 library(checkmate)
 
-rmd <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
 bad <- system.file("extdata", "badlab.Rmd", package = "labzenr")
+py <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+rmd <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
 
 test_that("count_points() must return a data frame", {
   tab1 <- count_points(rmd, margins = TRUE)
   tab2 <- count_points(rmd, margins = FALSE)
+  tab3 <- count_points(py, margins = FALSE)
   types <- c("integer", "character", "double")
   expect_tibble(tab1,
     types = types, any.missing = FALSE,
     min.rows = 3, min.cols = 3
   )
   expect_tibble(tab2,
+    types = types, any.missing = FALSE,
+    min.rows = 2, min.cols = 3
+  )
+  expect_tibble(tab3,
     types = types, any.missing = FALSE,
     min.rows = 2, min.cols = 3
   )
