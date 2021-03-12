@@ -16,37 +16,27 @@
 #' notebook <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
 #' check_repo_link(notebook)
 #' }
-check_repo_link <- function(notebook) {
+check_repo_link <- function(notebook = NULL) {
+# parse lab using parse_lab function
+  parsed_lab <- parse_lab(notebook)
 
+  # regex for github link
+  regex <- "(https://)?(www.)?github\\.ubc\\.ca\\/MDS-\\d{4}-\\d{2}\\/DSCI_\\d{3}_lab\\d_[a-z]+"
+
+  # Check whether each element contains the link
+  link_ind <- stringr::str_detect(parsed_lab, regex)
+
+  # Extract the link
+  link_cell <- parsed_lab[link_ind]
+  link <- stringr::str_extract(link_cell, regex)
+
+  if (length(link) >= 1) {
+    usethis::ui_done("The following link has been provided: {ui_field(link)}")
+  } else {
+    usethis::ui_oops("Include your repository link before submission")
+  }
 }
 
-#' Check whether the user has pushed the latest version in his/her repository
-#'
-#' @inheritParams parse_lab
-#' @return A logical which indicates whether the last pushed version is latest
-#'   or not
-#'
-#'
-#' @examples
-#' \dontrun{
-#' check_lat_version()
-#' }
-check_lat_version <- function(notebook) {
-
-}
-
-#' Check whether the user has at least three commits
-#' @inheritParams parse_lab
-#' @return A logical which indicates whether the repo has 3 commits or not
-#'
-#'
-#' @examples
-#' \dontrun{
-#' check_commits()
-#' }
-check_commits <- function(notebook) {
-
-}
 
 #' Performs Mechanics Checks on a MDS Lab This function check that you have a
 #' Github repo link, that you have pushed your latest commit, and that you have
