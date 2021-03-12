@@ -6,6 +6,9 @@
 \usage{
 check_commits(...)
 }
+\arguments{
+\item{...}{Arguments passed to \code{gert}, such as the \code{repo} name or \code{ref}.}
+}
 \value{
 A logical which indicates whether the repo has 3 commits or not
 }

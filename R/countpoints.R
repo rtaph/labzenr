@@ -19,12 +19,13 @@
 #' extract_points(notebook)
 extract_points <- function(notebook, margins = TRUE) {
   # Read-in notebook
-  nb <- readLines(notebook)
+  nb <- parse_lab(notebook)
 
   # # tidy the data
   dat <- tibble::tibble(line = seq_along(nb), text = nb)
   dat <- tidyr::separate_rows(dat, text, sep = "<hr>")
   dat <- tidyr::separate_rows(dat, text, sep = "<br>")
+  dat <- tidyr::separate_rows(dat, text, sep = "\n")
   dat$text <- stringi::stri_trim_both(dat$text)
   dat <- dat[dat$text != "", ]
 
@@ -33,7 +34,8 @@ extract_points <- function(notebook, margins = TRUE) {
   dat$below_header <- grepl("^#{1,6}\\s+", dat$header)
   dat$optional <- grepl("optional|bonus", dat$header, ignore.case = TRUE)
   dat <- dat[dat$is_rubric, ]
-  dat$pts <- as.integer(stringi::stri_extract_all(dat$text, regex = "\\d+"))
+  pts <- stringi::stri_extract_all(dat$text, regex = "\\d+")
+  dat$pts <- purrr::map(pts, as.integer)
   dat$total <- vapply(dat$pts, sum, 1L)
 
   # determine point worth
@@ -82,7 +84,7 @@ count_points <- function(notebook, margins = TRUE) {
   tab <- dat %>%
     mutate(type = if_else(dat$optional, "Optional", "Non-Optional")) %>%
     group_by(type) %>%
-    summarise(across(c(pts, prop), sum), .groups = "drop")
+    summarise(across(c(total, prop), sum), .groups = "drop")
 
   if (margins) {
     tab <- janitor::adorn_totals(tab, "row")

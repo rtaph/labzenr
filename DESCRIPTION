@@ -40,4 +40,8 @@ Imports:
     tidyr,
     checkmate,
     gert,
-    credentials
+    credentials,
+    jsonlite,
+    stringr,
+    rlang,
+    purrr
