@@ -23,6 +23,7 @@ check_repo_link <- function(notebook = NULL) {
   # regex for github link
   regex <- "(https://)?(www.)?github\\.ubc\\.ca\\/MDS-\\d{4}-\\d{2}\\/DSCI_\\d{3}_lab\\d_[a-z]+"
 
+
   # Check whether each element contains the link
   link_ind <- stringr::str_detect(parsed_lab, regex)
 

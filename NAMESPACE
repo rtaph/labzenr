@@ -2,6 +2,7 @@
 
 export("%>%")
 export(check_commits)
+export(check_lat_version)
 export(check_mechanics)
 export(count_points)
 export(extract_points)
