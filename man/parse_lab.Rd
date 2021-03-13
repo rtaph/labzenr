@@ -26,5 +26,4 @@ parse_lab(notebook)
 # Python notebook
 notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
 parse_lab(notebook)
-
 }

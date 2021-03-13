@@ -16,7 +16,6 @@
 #' # Python notebook
 #' notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
 #' parse_lab(notebook)
-#'
 parse_lab <- function(notebook = NULL) {
   # Call for find_assignment if the user did not defined notebook
   if (is.null(notebook)) {

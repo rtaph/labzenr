@@ -17,7 +17,7 @@
 #' check_repo_link(notebook)
 #' }
 check_repo_link <- function(notebook = NULL) {
-# parse lab using parse_lab function
+  # parse lab using parse_lab function
   parsed_lab <- parse_lab(notebook)
 
   # regex for github link
@@ -32,9 +32,11 @@ check_repo_link <- function(notebook = NULL) {
   link <- stringr::str_extract(link_cell, regex)
 
   if (length(link) >= 1) {
-    usethis::ui_done("The following link has been provided: {ui_field(link)}")
+    usethis::ui_done("The following link has been provided: {usethis::ui_field(link)}")
+    return(invisible(TRUE))
   } else {
     usethis::ui_oops("Include your repository link before submission")
+    return(invisible(FALSE))
   }
 }
 
@@ -53,5 +55,9 @@ check_repo_link <- function(notebook = NULL) {
 #' check_mechanics()
 #' }
 check_mechanics <- function(notebook) {
-
+  return(invisible(all(
+    check_repo_link(),
+    check_commits(),
+    check_lat_version()
+  )))
 }
