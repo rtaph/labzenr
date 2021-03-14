@@ -14,7 +14,7 @@ Authors@R:
              family = "Kaur",
              email = "Sukhdeep_2929@yahoo.com",
              role = c("aut")))
-Description: labzenr is a Python package that adds 
+Description: labzenr is a R package that adds 
     more zen to your student experience of working on MDS labs. 
     It lets you manage common tasks such as counting total marks 
     in an assigment, and performs common checks for mechanics in 
