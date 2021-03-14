@@ -61,16 +61,10 @@ purrr
 
 In order to show the usage of our package, we provided two dummy labs, one [Rmarkdown lab](https://github.com/UBC-MDS/labzenr/tree/master/inst/extdata/dummylab.Rmd) and one [Jupyter notebook](https://github.com/UBC-MDS/labzenr/tree/master/inst/extdata/dummylab.ipynb).
 
-Load the package labzenr
+First, load the `labzenr` package and get the path to the dummy Jupyter notebook lab.
 
 ```r
 library(labzenr)
-```
-
-# Path to the dummy python notebook
-
-```r
-notebook_r <- system.file("extdata", "dummylab.rmd", package = "labzenr")
 notebook_py <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
 ```
 
