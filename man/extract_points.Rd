@@ -4,7 +4,7 @@
 \alias{extract_points}
 \title{Summarize Available Points in Lab by Section}
 \usage{
-extract_points(notebook, margins = TRUE)
+extract_points(notebook = NULL, margins = TRUE)
 }
 \arguments{
 \item{notebook}{A character indicating the path or list of paths to MDS lab

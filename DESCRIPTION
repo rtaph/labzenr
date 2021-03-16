@@ -44,4 +44,5 @@ Imports:
     jsonlite,
     stringr,
     rlang,
-    purrr
+    purrr,
+    glue

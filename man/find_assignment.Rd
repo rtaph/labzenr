@@ -4,20 +4,25 @@
 \alias{find_assignment}
 \title{Find a UBC MDS Lab Assignment}
 \usage{
-find_assignment()
+find_assignment(notebook = NULL)
+}
+\arguments{
+\item{notebook}{A character string specifying the path to the lab. If left
+blank, labzenr will attempt to find the lab in the current directory
+recursively.}
 }
 \value{
 The relative filepath to the lab found. Returns NULL if none found.
 }
 \description{
-A helper function to locate the a lab file based on its extension being Rmd
-ipynb. The utility will search recursively up the directory. If multiple
-candidate files are found, the user will be prompted to select which file
-they wish.
+A helper function to validate and locate the a lab file based on its
+extension being Rmd ipynb. The utility will search recursively up the
+directory. If multiple candidate files are found, the user will be prompted
+to select which file they wish.
 }
 \examples{
 \dontrun{
-# Navigate to a UBC lab repo and type
+# Navigate to a UBC-MDS lab repo and type
 find_assignment()
 }
 }

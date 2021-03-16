@@ -4,7 +4,7 @@
 \alias{count_points}
 \title{Tally Available Points in Lab}
 \usage{
-count_points(notebook, margins = TRUE)
+count_points(notebook = NULL, margins = TRUE)
 }
 \arguments{
 \item{notebook}{A character indicating the path or list of paths to MDS lab

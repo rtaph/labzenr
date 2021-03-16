@@ -7,6 +7,7 @@
 #'
 #'
 #' @return A dataframe indicating total optional and required number of points.
+#' @importFrom rlang %||%
 #' @export
 #'
 #' @examples
@@ -17,8 +18,12 @@
 #' # Python notebook
 #' notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
 #' extract_points(notebook)
-extract_points <- function(notebook, margins = TRUE) {
+extract_points <- function(notebook = NULL, margins = TRUE) {
   # Read-in notebook
+  notebook <- notebook %||% find_assignment()
+  if (!any(fs::file_exists(notebook))) {
+      rlang::abort("Path to notebook does not exist")
+  }
   nb <- parse_lab(notebook)
 
   # # tidy the data
@@ -79,7 +84,10 @@ extract_points <- function(notebook, margins = TRUE) {
 #' # Python notebook
 #' notebook <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
 #' count_points(notebook)
-count_points <- function(notebook, margins = TRUE) {
+count_points <- function(notebook = NULL, margins = TRUE) {
+  # find notebook if not provided
+  notebook <- notebook %||% find_assignment()
+
   dat <- extract_points(notebook, margins = margins)
   tab <- dat %>%
     mutate(type = if_else(dat$optional, "Optional", "Non-Optional")) %>%
