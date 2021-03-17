@@ -17,7 +17,7 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' # navigate to a Git diretory for a lab, e.g.:
+#' # navigate to a Git directory for a lab, e.g.:
 #' # set_wd("~/mds/lab5")
 #' check_commits()
 #' }
@@ -25,8 +25,11 @@
 check_commits <- function(pattern = NULL, fixed = TRUE, repo = ".",
                           branch = usethis::git_branch_default(), ...) {
 
+  # Set repo path. Permissive of lab file paths.
+  repo <- gert::git_find(repo)
+
   # fetching git user full name and email
-  signature <- signature %||% gert::git_signature_default()
+  signature <- signature %||% gert::git_signature_default(repo = repo)
   usethis::ui_info("Checking commit author: {ui_code(signature)} \\
                     on branch {usethis::ui_field(branch)}")
 

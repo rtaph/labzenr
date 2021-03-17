@@ -13,7 +13,9 @@ check_lat_version <- function() {
                       on upstream remote.")
     return(invisible(FALSE))
   }
-  res <- purrr::safely(usethis:::check_branch_pushed)()
+
+  check_push <- get("check_branch_pushed", envir = asNamespace("usethis"))
+  res <- purrr::safely(check_push)()
   if (is.null(res$error)) {
     usethis::ui_done("Remote has the latest commit")
     return(invisible(TRUE))

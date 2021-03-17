@@ -1,5 +1,7 @@
 # Units tests for count_points()
 
+options(usethis.quiet = TRUE)
+
 # check the file extension is either Rmd or ipynb
 test_that("The file extension should be either Rmd or ipynb", {
   file_csv <- "extdata/dummylab.csv"
@@ -10,7 +12,7 @@ test_that("The file extension should be either Rmd or ipynb", {
 })
 
 # check the return datatype is boolean
-test_that("The function output  should be boolean", {
+test_that("The function output should be a logical", {
   # Set paths to dummy lab files
   py_file <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
   r_file <- system.file("extdata", "dummylab.Rmd", package = "labzenr")

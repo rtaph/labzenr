@@ -16,6 +16,7 @@
 #' check_repo_link(notebook)
 #' }
 check_repo_link <- function(notebook = NULL) {
+
   # parse lab using parse_lab function
   parsed_lab <- parse_lab(notebook)
 
@@ -45,6 +46,7 @@ check_repo_link <- function(notebook = NULL) {
 #' at least three commit messages authored by you in your history.
 #'
 #' @inheritParams parse_lab
+#' @inheritParams check_commits
 #' @return The function prints the results of the mechanics checks to screen.
 #'  Silently returns TRUE if all the checks are passed.
 #' @importFrom rlang %||%
@@ -54,7 +56,13 @@ check_repo_link <- function(notebook = NULL) {
 #' \dontrun{
 #' check_mechanics()
 #' }
-check_mechanics <- function(notebook = NULL) {
+check_mechanics <- function(notebook = NULL, pattern = NULL, fixed = TRUE,
+                            repo = ".") {
   lab <- notebook %||% find_assignment()
-  check_repo_link(lab) & check_lat_version() & check_commits()
+
+  c1 <- check_repo_link(lab)
+  c2 <- check_lat_version()
+  c3 <- check_commits(pattern = pattern, fixed = fixed, repo = repo)
+
+  invisible(c1 & c2 & c3)
 }

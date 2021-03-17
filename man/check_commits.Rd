@@ -36,7 +36,7 @@ Check whether the user has at least three commits
 }
 \examples{
 \dontrun{
-# navigate to a Git diretory for a lab, e.g.:
+# navigate to a Git directory for a lab, e.g.:
 # set_wd("~/mds/lab5")
 check_commits()
 }
