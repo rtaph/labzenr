@@ -1,4 +1,3 @@
-
 #' Check whether the user has included the github repo link in his/her
 #' repository
 #'
@@ -21,8 +20,8 @@ check_repo_link <- function(notebook = NULL) {
   parsed_lab <- parse_lab(notebook)
 
   # regex for github link
-  regex <- "(https://)?(www.)?github\\.ubc\\.ca\\/MDS-\\d{4}-\\d{2}\\/DSCI_\\d{3}_lab\\d_[a-z]+"
-
+  site <- "(https://)?(www.)?github\\.ubc\\.ca"
+  regex <- paste0(site, "\\/MDS-\\d{4}-\\d{2}\\/DSCI_\\d{3}_lab\\d_[a-z]+")
 
   # Check whether each element contains the link
   link_ind <- stringr::str_detect(parsed_lab, regex)
@@ -32,10 +31,10 @@ check_repo_link <- function(notebook = NULL) {
   link <- stringr::str_extract(link_cell, regex)
 
   if (length(link) >= 1) {
-    usethis::ui_done("The following link has been provided: {usethis::ui_field(link)}")
+    usethis::ui_done("You included the repo link {ui_field(link)}")
     return(invisible(TRUE))
   } else {
-    usethis::ui_oops("Include your repository link before submission")
+    usethis::ui_oops("No Github repo link found")
     return(invisible(FALSE))
   }
 }
@@ -48,16 +47,14 @@ check_repo_link <- function(notebook = NULL) {
 #' @inheritParams parse_lab
 #' @return The function prints the results of the mechanics checks to screen.
 #'  Silently returns TRUE if all the checks are passed.
+#' @importFrom rlang %||%
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' check_mechanics()
 #' }
-check_mechanics <- function(notebook) {
-  return(invisible(all(
-    check_repo_link(),
-    check_commits(),
-    check_lat_version()
-  )))
+check_mechanics <- function(notebook = NULL) {
+  lab <- notebook %||% find_assignment()
+  check_repo_link(lab) & check_lat_version() & check_commits()
 }

@@ -1,35 +1,50 @@
 #' Check whether the user has at least three commits
 #'
-#' @param ... Arguments passed to `gert`, such as the `repo` name or `ref`.
+#' @param pattern A character string indicating the a regular string (or
+#'   character string for `fixed = TRUE`) to be matched in the commit author
+#'   field.
+#' @param fixed A logical indicating whether the pattern should be matched as
+#'   a literal (if TRUE) or a regular expression (if FALSE). Defaults to TRUE.
+#' @param repo A character path to the repo to check. Defaults to the working
+#'   directory.
+#' @param branch A string specifying the name of the default branch used for
+#'   grading.
+#' @param ... Additional arguments passed to `grepl()`.
 #' @return A logical which indicates whether the repo has 3 commits or not
+#'
 #' @import gert
+#' @importFrom usethis ui_field ui_oops ui_done ui_code
 #' @export
 #' @examples
 #' \dontrun{
-#' myrepo <- "/Users/sukhdeepkaur/MDS/Block5/lab/DSCI_563_lab1_sukh2929"
-#' check_commits(repo = myrepo)
+#' # navigate to a Git diretory for a lab, e.g.:
+#' # set_wd("~/mds/lab5")
 #' check_commits()
 #' }
 #'
-check_commits <- function(...) {
+check_commits <- function(pattern = NULL, fixed = TRUE, repo = ".",
+                          branch = usethis::git_branch_default(), ...) {
 
   # fetching git user full name and email
-  signature <- gert::git_signature_default()
-  usethis::ui_info("username: {usethis::ui_field(signature)}")
+  signature <- signature %||% gert::git_signature_default()
+  usethis::ui_info("Checking commit author: {ui_code(signature)} \\
+                    on branch {usethis::ui_field(branch)}")
 
   # fetching the repo from remote
-  git_fetch(verbose = interactive(), ...)
+  git_fetch(verbose = interactive(), repo = repo)
 
   # fetching commits for the remote repo
-  commits <- gert::git_log(...)
-  user_commits <- sum(commits$author == signature)
+  commits <- gert::git_log(ref = branch, repo = repo)
+  user_commits <- sum(grepl(signature, commits$author, fixed = fixed, ...))
 
   if (user_commits >= 3) {
-    usethis::ui_done("Repository has at least 3 commits with the student username")
+    usethis::ui_done("Repo has at least 3 commits with the user \\
+                      signature {ui_field(signature)}")
   } else if (user_commits < 3 & user_commits >= 1) {
-    usethis::ui_oops("Repository does not have 3 commits with the student username")
+    usethis::ui_oops("Repo does not have 3 commits with the user \\
+                      signature {ui_field(signature)}")
   } else {
-    usethis::ui_oops("Repo has less than 3 commits")
+    usethis::ui_oops("Repo has fewer than 3 commits")
   }
   return(invisible(user_commits >= 3))
 }

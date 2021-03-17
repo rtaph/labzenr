@@ -6,7 +6,7 @@
 Github repo link, that you have pushed your latest commit, and that you have
 at least three commit messages authored by you in your history.}
 \usage{
-check_mechanics(notebook)
+check_mechanics(notebook = NULL)
 }
 \arguments{
 \item{notebook}{A character indicating the path or list of paths to MDS lab
