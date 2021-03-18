@@ -22,7 +22,7 @@ extract_points <- function(notebook = NULL, margins = TRUE) {
   # Read-in notebook
   notebook <- notebook %||% find_assignment()
   if (!any(fs::file_exists(notebook))) {
-      rlang::abort("Path to notebook does not exist")
+    rlang::abort("Path to notebook does not exist")
   }
   nb <- parse_lab(notebook)
 
@@ -91,9 +91,12 @@ count_points <- function(notebook = NULL, margins = TRUE) {
 
   dat <- extract_points(notebook, margins = margins)
   tab <- dat %>%
-    mutate(type = if_else(dat$optional, "Optional", "Non-Optional"),
-           across(!!sym("type"), factor,
-                  levels = c("Non-Optional", "Optional"))) %>%
+    mutate(
+      type = if_else(dat$optional, "Optional", "Non-Optional"),
+      across(!!sym("type"), factor,
+        levels = c("Non-Optional", "Optional")
+      )
+    ) %>%
     group_by(!!sym("type"), .drop = FALSE) %>%
     summarise(across(one_of(c("total", "prop")), sum), .groups = "drop")
 

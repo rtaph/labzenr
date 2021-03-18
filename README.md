@@ -3,6 +3,8 @@
 
 <!-- badges: start -->
 [![Project Status: Concept – Minimal or no implementation has been done yet](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![R-CMD-check](https://github.com/UBC-MDS/labzenr/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/labzenr/actions)
+[![Codecov test coverage](https://codecov.io/gh/UBC-MDS/labzenr/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/labzenr?branch=master)
 <!-- badges: end -->
 
 `labzenr` is a R package that adds more [zen](https://en.wikipedia.org/wiki/Zen) to your student experience of working on [MDS](https://masterdatascience.ubc.ca/) labs. It lets you manage common tasks such as counting total marks in an assigment, and performs common checks for mechanics in your iPython notebooks and R markdown assignments.

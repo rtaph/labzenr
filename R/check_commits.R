@@ -28,13 +28,18 @@ check_commits <- function(pattern = NULL, fixed = TRUE, repo = ".",
   # Set repo path. Permissive of lab file paths.
   repo <- gert::git_find(repo)
 
+  # fetching the repo from remote
+  if (nrow(git_remote_list(repo = repo)) > 0L) {
+    if (getOption("verbose", FALSE)) {
+      rlang::inform("Fetching...")
+    }
+    git_fetch(verbose = rlang::is_interactive(), repo = repo)
+  }
+
   # fetching git user full name and email
-  signature <- signature %||% gert::git_signature_default(repo = repo)
+  signature <- pattern %||% gert::git_signature_default(repo = repo)
   usethis::ui_info("Checking commit author: {ui_code(signature)} \\
                     on branch {usethis::ui_field(branch)}")
-
-  # fetching the repo from remote
-  git_fetch(verbose = interactive(), repo = repo)
 
   # fetching commits for the remote repo
   commits <- gert::git_log(ref = branch, repo = repo)

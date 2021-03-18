@@ -56,13 +56,17 @@ check_repo_link <- function(notebook = NULL) {
 #' \dontrun{
 #' check_mechanics()
 #' }
-check_mechanics <- function(notebook = NULL, pattern = NULL, fixed = TRUE,
-                            repo = ".") {
+check_mechanics <- function(notebook = NULL, pattern = NULL,
+                            fixed = TRUE, repo = ".",
+                            branch = usethis::git_branch_default()) {
   lab <- notebook %||% find_assignment()
 
   c1 <- check_repo_link(lab)
-  c2 <- check_lat_version()
-  c3 <- check_commits(pattern = pattern, fixed = fixed, repo = repo)
+  c2 <- check_lat_version(repo = repo)
+  c3 <- check_commits(
+    pattern = pattern, fixed = fixed,
+    repo = repo, branch = branch
+  )
 
   invisible(c1 & c2 & c3)
 }

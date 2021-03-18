@@ -4,7 +4,10 @@
 \alias{check_lat_version}
 \title{Check whether the user has pushed the latest version in his/her repository}
 \usage{
-check_lat_version()
+check_lat_version(repo = ".")
+}
+\arguments{
+\item{repo}{A character path specifying the repo to check.}
 }
 \value{
 A logical which indicates whether the last pushed version is latest

@@ -27,6 +27,12 @@ RoxygenNote: 7.1.1
 URL: https://github.com/UBC-MDS/labzenr
 BugReports: https://github.com/UBC-MDS/labzenr/issues
 Suggests: 
+    covr,
+    checkmate,
+    credentials,
+    knitr,
+    mockery,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
@@ -39,10 +45,10 @@ Imports:
     dplyr,
     tibble,
     tidyr,
-    checkmate,
-    credentials,
     jsonlite,
     stringr,
     rlang,
     purrr,
-    glue
+    glue,
+    withr
+VignetteBuilder: knitr

@@ -6,7 +6,13 @@
 Github repo link, that you have pushed your latest commit, and that you have
 at least three commit messages authored by you in your history.}
 \usage{
-check_mechanics(notebook = NULL, pattern = NULL, fixed = TRUE, repo = ".")
+check_mechanics(
+  notebook = NULL,
+  pattern = NULL,
+  fixed = TRUE,
+  repo = ".",
+  branch = usethis::git_branch_default()
+)
 }
 \arguments{
 \item{notebook}{A character indicating the path or list of paths to MDS lab
@@ -22,6 +28,9 @@ a literal (if TRUE) or a regular expression (if FALSE). Defaults to TRUE.}
 
 \item{repo}{A character path to the repo to check. Defaults to the working
 directory.}
+
+\item{branch}{A string specifying the name of the default branch used for
+grading.}
 }
 \value{
 The function prints the results of the mechanics checks to screen.

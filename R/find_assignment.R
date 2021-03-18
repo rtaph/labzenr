@@ -19,7 +19,6 @@
 #' find_assignment()
 #' }
 find_assignment <- function(notebook = NULL) {
-
   if (is.null(notebook)) {
     # list all candidate files
     files <- fs::dir_ls(regexp = ".*\\.(Rmd|ipynb)$", recurse = TRUE)
@@ -28,7 +27,7 @@ find_assignment <- function(notebook = NULL) {
       ui_info("Using {ui_field(files)}")
       return(files)
     } else if (length(files) > 1) {
-      if (interactive()) {
+      if (rlang::is_interactive()) {
         # menu() selection only works in interactive mode
         prompt <- "Multiple potential assignments found. Please select:"
         choice <- utils::menu(files, title = prompt)
@@ -42,14 +41,13 @@ find_assignment <- function(notebook = NULL) {
         ui_info("Using {ui_field(files[1])}")
         return(files[1])
       }
-
     } else {
       ui_stop("Could not find an assignment file. Are you \\
                in the right directory?")
     }
   } else {
     if (fs::file_exists(notebook)) {
-      return(fs::path_sanitize(notebook))
+      return(notebook)
     } else {
       rlang::abort(glue::glue("Could not find file {ui_path(notebook)}"))
     }
