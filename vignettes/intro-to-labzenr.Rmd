@@ -1,0 +1,181 @@
+---
+title: "Intro to labzenr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+labzenr is a R package that adds more zen to your student experience of working on MDS labs. It lets you manage common tasks such as counting total marks in an assigment, and performs common checks for mechanics in your iPython notebooks and R markdown assignments.
+
+In this vignette, we will show you how to give `labzenr` a spin!
+
+## Setup
+
+After [installing `labzenr`](https://github.com/UBC-MDS/labzenr/tree/vignet#installation), run `usethis::git_sitrep()` to obtain a situation report of your local Git credentials status.
+
+If the printout indicates that you do not a token setup, you will need to follow the instructions to [set up your creditials](https://usethis.r-lib.org/articles/articles/git-credentials.html) first.
+
+
+
+```{r setup}
+library(labzenr)
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+lab <- system.file("extdata", "dummylab.Rmd", package = "labzenr")
+```
+
+
+For this demo, we'll pretend as if we are in a directory on our computer containing just one lab file (ending in either `.Rmd` or `.ipynb`):
+
+```{r, eval=FALSE}
+getwd()
+```
+
+```{r, echo=FALSE}
+print("~/mds/block1/dsci999/lab2")
+```
+
+We can check what the files are in the current directory:
+
+```{r, eval=FALSE}
+list.files()
+```
+
+```{r, echo=FALSE}
+print("~/mds/block1/dsci999/lab2/lab2.Rmd")
+```
+
+
+## Checking Mechanics
+
+Have you ever forgotten to include a Github link, to push your main branch to Github Enterprise, or to commit at least three times?
+
+`check_mechanics()` is your friend. Let it perform these checks so that you never lose mechanics marks again!
+
+
+```{r, eval=FALSE}
+check_mechanics()
+```
+
+```r
+#> ℹ Using lab2.Rmd
+#> ✓ You included the repo link https://github.ubc.ca/MDS-2020-21/DSCI_998_lab1_johnsmith
+#> ✓ Remote has the latest commit
+#> Trying to authenticate 'git' using ssh-agent...
+#> ✓ No unrecognized Git signatures found. To add signatures manually, use `labzenr::signature_add()`.
+#> ℹ To see the list of currently registered signatures, run `labzenr::signature_ls()`.
+#> ✓ Repo has at least 3 commits with users listed in `labzenr::signature_student()`
+```
+
+In the above printout, we can see that the function is detecting a `lab2.Rmd` file (based on the working directory). Several checks passed:
+
+- It found that we included a Github link to our **MDS-2020-21/DSCI_998_lab1_johnsmith** repo
+- It used an SSH connection to check that our main branch was pushed (you may need to [set up your creditials](https://usethis.r-lib.org/articles/articles/git-credentials.html) first).
+- It found that we had at least three student commits in the repo.
+
+
+If it is your first time using `labzenr`, the package will not know which Github authors in the Git log are you, and which are an instructor. If so, it will set up a persistent cache and ask you:
+
+
+```r
+'Dr. Strange <strange@stat.ubc.ca>' is a 
+
+1: Student
+2: Instructor
+3: I don't know! (escape)
+```
+
+In the above example, we would want to enter "2" in the console in order to add our professor Dr. Strange into our cache of known instructors. This will allow the check on the number of commits to correctly count up the student commits, and ignore the instructor commits.
+
+Anytime you switch labs and a new git author is found in your log, `labzen` will ask you about them. To view your cache of known Git users, run `labzenr::signatures_ls()`.
+
+You can also choose to manually add `regex` patterns to search for known patterns:
+
+```{r, eval=FALSE}
+signature_add("John S(\\.|mith)", is_user = TRUE)
+```
+
+This will allow us to detect future commits both for "John Smith" and "John S.". The `is_user = TRUE` argument specifies that John is a student, not an instructor.
+
+
+## Counting Points
+
+When working on a lab from within RStudio, you can simply run:
+
+
+```{r, eval=FALSE}
+extract_points()
+```
+
+```{r, echo=FALSE}
+kable(extract_points(lab))
+```
+
+This will produce the above table (shown nicely here using `knitr::kable()`). If there is more than one assignment in the current working directory (ending in `.Rmd` or `.ipynb`), then you will be prompted to specify which lab to analyse.
+
+The table above shows us that there are 5 sections in this lab, and whether these points are optional or not. The total number of points is shown in the *total* column. Since requires quesitons only are meant to get you to a 95% grade, the optionals may imply a total percentage that is less than (or more) than 100% in the *prop* column.
+
+For convenience, the total marks can also be tabulated via:
+
+```{r, eval=FALSE}
+count_points()
+```
+
+```{r, echo=FALSE}
+kable(count_points(lab))
+```
+
+In this fake example, we can see that the optional questions are worth a lot of marks-- more than enough to get to 100% if completed.
+
+These functions can also be called explicitly on files not in the current working directory:
+
+```{r, eval=FALSE}
+count_points("~/mds/block5/dsci998/lab1/lab1.ipynb")
+```
+
+```{r, echo=FALSE}
+lab2 <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+kable(count_points(lab2))
+```
+
+
+## Using labzenr at the Command Line
+
+
+You can set an alias in your `~/.bash_profile` to allow labzenr to work at the command line. We recommend:
+
+```bash
+alias checklab='Rscript -e "labzenr::check_mechanics()"'
+alias points='Rscript -e "labzenr::count_points()"'
+```
+
+Then you can simply run 
+
+```bash
+checklab
+```
+or 
+
+```bash
+points
+```
+
+From any directory to have it print out the relevant output. Note that interactive features will not work in the same way they do in the R console.
+
+
+
+

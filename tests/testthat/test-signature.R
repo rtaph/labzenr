@@ -7,7 +7,7 @@ options(usethis.quiet = TRUE)
 trydelete <- purrr::possibly(fs::file_delete, NULL)
 
 # set up devfile for test
-config_dir <- rappdirs::user_config_dir("labzen")
+config_dir <- rappdirs::user_config_dir("labzenr")
 devfile <- fs::path(config_dir, "dev.csv")
 
 # set a temp directory as a git lab file
