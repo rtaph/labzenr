@@ -1,6 +1,6 @@
 Package: labzenr
 Title: A package to help UBC MDS students manage their labs
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Kamal",
            family = "Moravej",
