@@ -50,5 +50,7 @@ Imports:
     rlang,
     purrr,
     glue,
-    withr
+    withr,
+    readr,
+    rappdirs
 VignetteBuilder: knitr
