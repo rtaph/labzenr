@@ -151,7 +151,7 @@ find_sigfile <- function() {
   filename <- getOption("labzenr.sigfile", "signatures.csv")
 
   # determine the location of the labzenr cache
-  config_dir <- rappdirs::user_config_dir("labzen")
+  config_dir <- rappdirs::user_config_dir("labzenr")
 
   # Create config directory if none exists
   if (!fs::dir_exists(config_dir)) {
