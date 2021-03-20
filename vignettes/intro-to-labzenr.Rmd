@@ -1,0 +1,54 @@
+---
+title: "my-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r setup}
+library(labzenr)
+notebook_py <- system.file("extdata", "dummylab.ipynb", package = "labzenr")
+```
+
+## Function - extract_points()
+
+```{r}
+
+total_points  <- extract_points(notebook_py)
+total_points
+```
+
+The output dataframe is a section-by-section overview of points available in the lab assignment.
+
+## Function - count_points()
+
+```{r}
+extracted_points  <- count_points(notebook_py)
+extracted_points
+```
+
+The output dataframe is a cross table summarising the number of optional, required, and total points per lab.
+
+
+## Function - check_mechanics()
+
+```{r}
+check_mechanics()
+```
+
+This function performs the following tests on your current git repository:
+
+* Check that you have included a Github repo link;
+* Check that you have pushed the latest version; and
+* Check that you have at least three commits.
+
