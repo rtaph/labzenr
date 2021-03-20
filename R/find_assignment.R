@@ -10,7 +10,7 @@
 #'   blank, labzenr will attempt to find the lab in the current directory
 #'   recursively.
 #' @return The relative filepath to the lab found. Returns NULL if none found.
-#' @importFrom usethis ui_path ui_stop ui_done ui_info ui_field ui_warn
+#' @importFrom usethis ui_path ui_stop ui_done ui_info ui_field ui_warn ui_line
 #' @export
 #'
 #' @examples
@@ -38,7 +38,7 @@ find_assignment <- function(notebook = NULL) {
         i <- grep("lab\\d+\\.(Rmd|ipynb)$", files)
         files <- unique(c(files[i], files))
         ui_warn("Multiple possible files found: {ui_path(files)}")
-        ui_info("Using {ui_field(files[1])}")
+        ui_line(glue::glue("Using {ui_field(files[1])}"))
         return(files[1])
       }
     } else {

@@ -4,29 +4,14 @@
 \alias{check_commits}
 \title{Check whether the user has at least three commits}
 \usage{
-check_commits(
-  pattern = NULL,
-  fixed = TRUE,
-  repo = ".",
-  branch = usethis::git_branch_default(),
-  ...
-)
+check_commits(repo = ".", branch = usethis::git_branch_default())
 }
 \arguments{
-\item{pattern}{A character string indicating the a regular string (or
-character string for \code{fixed = TRUE}) to be matched in the commit author
-field.}
-
-\item{fixed}{A logical indicating whether the pattern should be matched as
-a literal (if TRUE) or a regular expression (if FALSE). Defaults to TRUE.}
-
 \item{repo}{A character path to the repo to check. Defaults to the working
 directory.}
 
 \item{branch}{A string specifying the name of the default branch used for
 grading.}
-
-\item{...}{Additional arguments passed to \code{grepl()}.}
 }
 \value{
 A logical which indicates whether the repo has 3 commits or not
