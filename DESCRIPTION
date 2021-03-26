@@ -1,6 +1,6 @@
 Package: labzenr
 Title: A package to help UBC MDS students manage their labs
-Version: 1.1.0
+Version: 1.1.0.9000
 Authors@R: 
     c(person(given = "Kamal",
            family = "Moravej",
@@ -51,6 +51,6 @@ Imports:
     purrr,
     glue,
     withr,
-    readr,
+    readr (>= 1.4.0),
     rappdirs
 VignetteBuilder: knitr
