@@ -11,13 +11,16 @@ signature_ls(repo = ".")
 directory.}
 }
 \value{
-A tibble containing three columns. The the \code{signature} column
-contains character strings of the exact Git signatures (e.g. "John Smith
-\href{mailto:jsmith@example.com}{jsmith@example.com}") or regular expressions (e.g. "^John S(mith|\\.)").
-The \code{is_user} column indicates whether the signature/pattern belongs to
-the student (FALSE would denote a Git user of MDS faculty). The
-\code{is_regexp} column denotes if the signature column is a fixed literal or a
-regular expression.
+A tibble containing three columns:
+\enumerate{
+\item The the \code{signature} column contains character strings of the
+exact Git signatures (e.g. "John Smith \href{mailto:jsmith@example.com}{jsmith@example.com}") or
+regular expressions (e.g. "^John S(mith|\\.)").
+\item The \code{is_user} column indicates whether the signature/pattern belongs
+to the student (FALSE would denote a Git user of MDS faculty).
+\item The \code{is_regexp} column denotes if the signature column is a fixed
+literal or a regular expression.
+}
 }
 \description{
 List Known Git Signatures from the User Cache

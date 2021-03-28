@@ -1,15 +1,19 @@
 #' List Known Git Signatures from the User Cache
 #' @param repo A path to a github repository. Defaults to the working
 #'    directory.
-#' @return A tibble containing three columns. The the `signature` column
-#'   contains character strings of the exact Git signatures (e.g. "John Smith
-#'   <jsmith@example.com>") or regular expressions (e.g. "^John S(mith|\\.)").
-#'   The `is_user` column indicates whether the signature/pattern belongs to
-#'   the student (FALSE would denote a Git user of MDS faculty). The
-#'   `is_regexp` column denotes if the signature column is a fixed literal or a
-#'   regular expression.
+#' @return A tibble containing three columns:
+#'    1. The the `signature` column contains character strings of the
+#'    exact Git signatures (e.g. "John Smith <jsmith@example.com>") or
+#'    regular expressions (e.g. "^John S(mith|\\.)").
+#'
+#'    2. The `is_user` column indicates whether the signature/pattern belongs
+#'    to the student (FALSE would denote a Git user of MDS faculty).
+#'
+#'    3. The `is_regexp` column denotes if the signature column is a fixed
+#'    literal or a regular expression.
 #'
 #' @export
+#' @md
 #'
 #' @param repo A path to a github repository. Defaults to the working
 #'    directory.
